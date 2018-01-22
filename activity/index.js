@@ -8,12 +8,14 @@ const getDiscounts = storeName => DISCOUNTS[storeName].sort((prev, next) => prev
 const discount = (totalPrice, storeName) => {
 	return getDiscounts(storeName)
 		.reduce((discount, { price, discountPrice }) => discount.setPrevious(new Discount(price, discountPrice)), new Discount(0, 0))
-.calculate(totalPrice);
+		.calculate(totalPrice);
 };
 
 
 const calculate = (storeName, price) => {
-	console.log(`${storeName}: Total $${price}, actually pay $${discount(price, storeName)}`);
+	discount(price, storeName).then(actualPrice => {
+		console.log(`${storeName}: Total $${price}, actually pay $${actualPrice}`);
+	});
 };
 
 calculate(STORE.BOOK_A, 1000);
