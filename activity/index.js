@@ -1,15 +1,22 @@
-const discount = totalPrice => {
-	if (totalPrice >= 1000) {
-		return totalPrice - 150;
-	} else if (totalPrice >= 800) {
-		return totalPrice - 100;
-	} else if (totalPrice >= 500) {
-		return totalPrice - 50;
-	} else {
-		return totalPrice;
-	}
-};
+"use strict";
+import { Discount } from "./discount";
 
+const discountData = [{
+	price: 500, discountPrice: 50
+}, {
+	price: 800, discountPrice: 100
+}, {
+	price: 1000, discountPrice: 150
+}];
+
+const discount = totalPrice => {
+	const discount1000 = new Discount(1000, 150);
+	discount1000.setNextDiscount(new Discount(800, 100)).setNextDiscount(new Discount(500, 50));
+	return discount1000.calculate(totalPrice);
+	//return discountData
+	//  .reduce((discountChain, { price, discountPrice }) => discountChain.setPrevious(new Discount(price, discountPrice)), new Discount(0, 0))
+	//  .calculate(totalPrice);
+};
 
 const calculate = price => {
 	console.log(`Total $${price}, actually pay $${discount(price)}`);
