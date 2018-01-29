@@ -15,8 +15,9 @@ const discount = totalPrice => {
 	const discount500 = new Discount(500, 50);
 
 	discount1000.setNextDiscount(discount800).setNextDiscount(discount500);
-	//discount1000.setNextDiscount(new Discount(800, 100)).setNextDiscount(new Discount(500, 50));
 	return discount1000.calculate(totalPrice);
+
+	//return new Discount(0, 0).setPrevious(new Discount(500, 50)).setPrevious(new Discount(800, 100)).setPrevious(new Discount(1000, 150)).calculate(totalPrice);
 
 	//return discountData
 	//  .reduce((discountChain, { price, discountPrice }) => discountChain.setPrevious(new Discount(price, discountPrice)), new Discount(0, 0))

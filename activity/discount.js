@@ -16,11 +16,11 @@ export class Discount {
 		return discount;
 	}
 
-	calculate(price) {
-		if (price >= this.price) {
-			return price - this.discountPrice;
+	calculate(totalPrice) {
+		if (totalPrice >= this.price) {
+			return totalPrice - this.discountPrice;
 		} else if (this.nextDiscount instanceof Discount) {
-			return this.nextDiscount.calculate(price);
+			return this.nextDiscount.calculate(totalPrice);
 		}
 	}
 }
