@@ -1,34 +1,7 @@
 "use strict";
-//import {Loan} from './loan.js';
+import {Loan} from './loan.js';
 
 window.onload = () => {
-
-	class Loan {
-		constructor(minAge, maxAge, loanAmount) {
-			this.maxAge = maxAge;
-			this.minAge = minAge;
-			this.loanAmount = loanAmount;
-		}
-
-		setPrevious(previous) {
-			previous.setNext(this);
-			return previous;
-		}
-
-		setNext(next) {
-			this.next = next;
-			return next;
-		}
-
-		judge(age) {
-			if (age >= this.minAge && age < this.maxAge) {
-				return this.loanAmount;
-			} else if (this.next instanceof Loan) {
-				return this.next.judge(age);
-			}
-		}
-	}
-
 	//校验身份证号码
 	const validateIDCardNumber = (cardNum) => {
 		var aCity = {
@@ -132,7 +105,7 @@ window.onload = () => {
 				initLoan.setPrevious(new Loan(minAge, maxAge, loanAmount))
 			, new Loan(0, 20, 0))
 			.judge(age);
-		document.getElementById('loanAmount').value = loanAmount;
+		document.getElementById('loanAmount').value = loanAmount + '万';
 	};
 
 	document.getElementById('idCardNO').oninput = el => {
